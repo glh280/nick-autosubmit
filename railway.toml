@@ -1,8 +1,4 @@
-[build]
-buildCommand = "npm install && npx playwright install chromium --with-deps"
-
 [deploy]
-startCommand = "node server.js"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
