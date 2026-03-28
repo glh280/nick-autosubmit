@@ -1,0 +1,13 @@
+{
+  "name": "nick-autosubmit",
+  "version": "1.0.0",
+  "description": "Auto-submit service that forwards STM lead data to Nick's JotForm",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "playwright": "^1.52.0"
+  }
+}
