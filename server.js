@@ -25,20 +25,12 @@ app.post("/submit-to-nick", async (req, res) => {
       await page.fill("#input_5", data.borrower_name_business_entity);
     }
 
-    // Phone Number — Nick's form uses a masked phone input (area, phone)
+    // Phone Number — masked input with id input_41_full, format (###) ###-####
     if (data.phone_number) {
       const digits = data.phone_number.replace(/\D/g, "");
-      const area = digits.slice(0, 3);
-      const rest = digits.slice(3);
-      const areaInput = page.locator("input[id='input_41_area']");
-      const phoneInput = page.locator("input[id='input_41_phone']");
-      if (await areaInput.count() > 0) {
-        await areaInput.fill(area);
-        await phoneInput.fill(rest);
-      } else {
-        // Fallback: single phone field
-        await page.fill("#input_41", data.phone_number);
-      }
+      const formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+      await page.locator("#input_41_full").click();
+      await page.locator("#input_41_full").fill(formatted);
     }
 
     // Email
